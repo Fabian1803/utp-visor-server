@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import base64
 from roboflow_config import load_model
+import os
 
 app = Flask(__name__)
 model = load_model()
@@ -26,3 +27,7 @@ def predict():
 @app.route('/')
 def home():
     return "Servidor Flask UTP Visor activo"
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))  # Render define PORT como variable de entorno
+    app.run(host='0.0.0.0', port=port)
